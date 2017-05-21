@@ -213,8 +213,8 @@ def PlotData(df, p = None):
     mpl.show()
 
 
-#stockprediction class 
-class StockPredictor:
+#Tempreature class 
+class TempPredictor:
     
     #The (scaled) data frame
     D = None
@@ -494,7 +494,7 @@ def Main(args):
     #The list of layer sizes
     layers = [i, h, h, h, h, h, h, o]
     R = MLPR(layers, maxItr = 1000, tol = 0.40, reg = 0.001, verbose = True)
-    sp = StockPredictor(R, nPastDays = numPastDays)
+    sp = TempPredictor(R, nPastDays = numPastDays)
     #Learn the dataset and then display performance statistics
     sp.Learn(D)
     sp.TestPerformance()
