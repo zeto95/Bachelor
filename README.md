@@ -2,7 +2,7 @@
 
 #There are five files in this folder
 
-#(openhab.cvs):The actual dataset
+#(openhab.csv):The actual dataset
 
 #(actual7):The transformed dataset
 
@@ -10,7 +10,7 @@
 
 #(datatransformation.py): included the code for the data transformation in a separate file, simply i took the average tempreature of each day to be feed into the model. 
 
-#(TFMLP.py):This file contains a class implementing a multi-layer perceptron (MLP) using numpy and tensorflow. Both a MLP for regression (MLPR) and a MLP for classification (MLPC) are provided.
+#(TFMLP.py):This file contains a class implementing a multi-layer perceptron (MLP) using numpy and tensorflow. 
 
 #To run the example, the TFMLP file should run first and then the actual.py in the terminal. 
 
