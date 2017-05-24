@@ -281,7 +281,7 @@ class TempPredictor:
     def _GetNumFeatures(self, n = None):
         if(n is None):
             n = self.npd
-        return n * 7 + 1
+        return n * 2 + 1
         
     #Get the sample for a specific row in the dataframe. 
     #A sample consists of the current timestamp and the data from
@@ -486,11 +486,11 @@ def Main(args):
     numPastDays = 10
     PlotData(D)
     #Number of neurons in the input layer
-    i = numPastDays * 7 + 1
+    i = numPastDays * 2 + 1
     #Number of neurons in the output layer
     o = D.shape[1] - 1
     #Number of neurons in the hidden layers
-    h = int((i + o) / 2)
+    h = int((i + o) * 2/3)
     #The list of layer sizes
     layers = [i, h, h, h, h, h, h, o]
     R = MLPR(layers, maxItr = 1000, tol = 0.40, reg = 0.001, verbose = True)
