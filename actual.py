@@ -91,7 +91,6 @@ def ParseData(p):
     tempint = df['Temp'].values
     print (df.dtypes)
     
-    
     addition = np.zeros(dateStr.shape, dtype=np.float64)
     countarray = np.zeros(dateStr.shape, dtype=np.float64) 
     averagearray = np.zeros(dateStr.shape, dtype=np.float64)  
@@ -102,10 +101,7 @@ def ParseData(p):
     j = 0
     
     addition[0] = tempint[0]
-    newdate [0]= datevalues[0]
-
-    #print ('newdate of zero ',newdate[0])
- 
+    newdate [0]= datevalues[0] 
     for i in range (datecol-1):
 
         prevday = df['Date'][i]
@@ -117,35 +113,24 @@ def ParseData(p):
         c2 = float (char2)
         sum = c1 + c2
 
-        #currentdate = df['Date'].loc[i+1]
-        currentdate = datevalues[i+1]
-        #currenttemp = df['Temp'].loc[i+1]
-        currenttemp = tempint[i+1]
-        #parsedcurrenttemp = float (currenttemp)
+       
+        currentdate = datevalues[i+1] 
+        currenttemp = tempint[i+1]      
         char3 = currentdate[8]
         char4 = currentdate[9]
         c3= float(char3)
         c4 = float(char4)
         sum2 = c3 + c4
         
-        #print ('sum 1:',sum , 'sum 2:', sum2)
         if (sum == sum2):
-            #parsedavg = float(average[j])
-            #average [j] = parsedavg + parsedcurrenttemp
-            #average [j] = average[j] + currenttemp
-
+           
             newdate[j] = currentdate
             addition [j]= addition [j]+ currenttemp 
             count = count +1
             countarray [j]= count 
-            #print ('j:', j )
-            #average [j]= average[j] / count 
-            #count = count +1 
-            #print ('Iteration number:', i , 'Addition:', addition[i]) 
         else :
             count = 1
             j = j+1
-            #average [j] = average[j] + currenttemp / count 
             addition [j]= addition[j]+currenttemp
             newdate[j] = currentdate
 
@@ -164,9 +149,7 @@ def ParseData(p):
     df.to_csv('/home/mai/Desktop/Outputs/actual7.csv',columns = Header1)
     df['NewDate'] = newdate 
     df['NewTemp'] = addition
-    #df.drop('Date', axis = 1) 
-    #df.drop('Temp', axis = 2)
-    #print (df)
+
 '''
     
     
@@ -250,9 +233,8 @@ class TempPredictor:
     #ret:       The data matrix of samples
     def _ExtractFeat(self, D):
         #One row per day of stock data
-        m = D.shape[0]
-        #print(m)
-        #Open, High, Low, and Close for past n days + timestamp and volume
+        m = D.shape[0]       
+        # Date and Temp for past n days + timestamp 
         n = self._GetNumFeatures()
         B = np.zeros([m, n])
         #Preserve order of spreadsheet
@@ -313,7 +295,7 @@ class TempPredictor:
                 r[k + 1 + n * j] = df[c].values[ind]
         return r
         
-    #Attempts to learn the stock market data
+    #Attempts to learn the tempreature data
     #given a dataframe taken from ParseData
     #
     #D:         A dataframe from ParseData
@@ -355,7 +337,7 @@ class TempPredictor:
         P[P.columns] = self.S.inverse_transform(P)
         return P
         
-    #Predict the stock price during a specified time
+    #Predict the tempreature during a specified time
     #
     #startDate:     The start date as a string in yyyy-mm-dd format
     #endDate:       The end date as a string yyyy-mm-dd format
@@ -530,4 +512,4 @@ def Main(args):
 
 if __name__ == "__main__":
     Main(sys.argv[1:])
-    #p, n = Main(['/home/mai/Desktop/trial5/yahoostockorg.csv', '2016-02-20', '2016-02-28', 'D'])
+    
