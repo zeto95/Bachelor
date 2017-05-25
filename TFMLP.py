@@ -5,16 +5,6 @@
 import tensorflow as tf
 import numpy as np
 
-#Return the classification accuracy
-#given a vector of target labels and
-#predicted labels
-#y: The target labels
-#yHat: The predicted labels
-#return: The percentage correct
-def _Accuracy(y, yHat):
-    n = float(len(y))
-    return np.sum(y == yHat) / n
-
 #Create the MLP variables for TF graph
 #_X: The input matrix
 #_W: The weight matrices
@@ -135,8 +125,8 @@ class MLPR:
     #param batchSize: Size of training batches to use (use all if None)
     #param verbose: Print training information
     #param reg: Regularization weight
-    def __init__(self, layers, actvFn = 'tanh', optmzr = 'adam', learnRate = 0.001, decay = 0.9, 
-                 maxItr = 2000, tol = 1e-2, batchSize = None, verbose = False, reg = 0.001):
+    def __init__(self, layers, actvFn = 'tanh', optmzr = 'adam', learnRate = 0.001, 
+                 maxItr = 500, tol = 0.40, batchSize = None, verbose = False, reg = 0.001):
         #Parameters
         self.tol = tol
         self.mItr = maxItr
