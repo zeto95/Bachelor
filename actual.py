@@ -474,7 +474,7 @@ def Main(args):
     #Number of neurons in the hidden layers
     h = int((i + o) * 2/3)
     #The list of layer sizes
-    layers = [i, h, h, h, h, h, h, o]
+    layers = [i, h, h, o]
     R = MLPR(layers, maxItr = 1000, tol = 0.40, reg = 0.001, verbose = True)
     sp = TempPredictor(R, nPastDays = numPastDays)
     #Learn the dataset and then display performance statistics
